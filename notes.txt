@@ -1,0 +1,33 @@
+Step 1: Initialize npm
+    npm init -y
+
+Step 2: Install node packages
+    sequelize@^5.0.0
+    sequelize-cli@^5.0.0
+    pg 
+        npm uninstall pg
+        npm install pg
+
+Step 3: Initalize sequelize
+    npx sequelize init
+
+Step 4: Edit the config file
+    change:
+        username
+        password
+        database
+        dialect- postgres
+        remove- operatorsAliases
+        add- seederStorage: sequelize
+
+Step 5: Create the database
+    npx sequelize db:create
+
+Step 6: Create tables
+    npx sequelize model:generate --name User --attributes name:string,col2:datatype,col3:datatype
+        model names: capitalized and singular
+            how to interact with instances of data
+        table/migration names: capitalized and plural
+            blueprint for building table
+    npx sequelize db:migrate
+    npx sequelize db:migrate:undo:all

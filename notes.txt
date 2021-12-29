@@ -31,3 +31,20 @@ Step 6: Create tables
             blueprint for building table
     npx sequelize db:migrate
     npx sequelize db:migrate:undo:all
+
+Step 7: Insert data
+    npx sequelize seed:generate --name anyName
+
+    npx sequelize db:seed:all
+    npx sequelize db:seed:undo:all
+
+When fixing migration errors:
+    rollback seeds - npx sequelize db:seed:undo:all
+    rollback migrations - npx sequelize db:migrate:undo:all
+    re-migrate - npx sequelize db:migrate
+    re-seed -  npx sequelize db:seed:all
+
+associations
+    hasOne - don't worry about this one
+    hasMany, belongsTo - 1-M
+    belongsToMany - M-M

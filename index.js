@@ -134,4 +134,28 @@ async function getPostAndStuff(postId) {
     await sequelize.close()
 }
 
-getPostAndStuff(5);
+// getPostAndStuff(5);
+
+// Get a user, their posts, and the subbreaddits associated to the posts
+async function getUserAndStuff(userId) {
+    const user = await User.findByPk(userId, {
+        include: {
+            model: Post,
+            include: {model: Subbreaddit}
+        }
+    })
+    console.log(user.Posts[0].Subbreaddit.name);
+    await sequelize.close()
+}
+
+// getUserAndStuff(1);
+
+async function getSubs(userId) {
+    const user = await User.findByPk(userId, {
+        include: Subbreaddit
+    })
+    console.log(user)
+    await sequelize.close()
+}
+
+getSubs(1)

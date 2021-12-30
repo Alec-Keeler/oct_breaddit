@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Posts', {
+    return queryInterface.createTable('Subscriptions', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -18,14 +18,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {model: 'Subbreaddits'}
       },
-      title: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      content: {
-        allowNull: false,
-        type: Sequelize.TEXT
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -37,6 +29,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Posts');
+    return queryInterface.dropTable('Subscriptions');
   }
 };

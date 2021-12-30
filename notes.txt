@@ -44,7 +44,21 @@ When fixing migration errors:
     re-migrate - npx sequelize db:migrate
     re-seed -  npx sequelize db:seed:all
 
+To destroy and rebuild
+    npx sequelize db:drop
+    npx sequelize db:create
+    npx sequelize db:migrate
+    npx sequelize db:seed:all
+
 associations
     hasOne - don't worry about this one
     hasMany, belongsTo - 1-M
     belongsToMany - M-M
+
+query functions:
+    build, save
+    create
+    findByPk
+    findOne
+    findAll
+    destroy

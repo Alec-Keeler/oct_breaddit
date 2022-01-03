@@ -1,0 +1,23 @@
+* = 0 or more
+? = 0 or 1
++ = 1 or more
+\ = escape next character
+. = any character
+^ = beginning of expression
+$ = end of expression
+[] = list of optional characters
+[a-z][0-9] = range of characters
+[^] = excluding list of characters
+() = group of characters
+{3, 4} = specific number(s) of characters
+
+shorthand
+\s = whitespace
+\d = digits
+\w = letters, digits, _
+
+email regex:
+^[a-zA-Z0-9-_]*@[a-z]*\.[a-z]{2,3}$
+
+phone num regex:
+^\(?\d{3}\)?\-?\d{3}\-\d{4}$

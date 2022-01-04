@@ -1,0 +1,27 @@
+Step 1: install express
+    npm install express
+    npm install nodemon
+
+Step 2: Set up main express file
+    const express = require('express')
+    const app = express()
+
+Step 3: App should listen to a port
+    app.listen(port, () => console.log('Listening on port #...'))
+
+Types of route handler
+    get
+    post
+    put/patch
+    delete
+    all
+
+Response Types
+    send
+    json
+    render
+    redirect
+
+Setting up Pug:
+    npm install pug
+    app.set('view engine', 'pug')

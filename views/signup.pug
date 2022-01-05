@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+    h1 SIGN UP HERE
+    form(action="/users/signup" method="post") 
+        label(for="username") Username:
+        input(type="text" name="username")
+        label(for="email") Email:
+        input(type="text" name="email")
+        label(for="password") Password:
+        input(type="text" name="password")
+        label(for="faveBread") Favorite Bread:
+        input(type="text" name="faveBread")
+        button Sign Up

@@ -1,16 +1,17 @@
+extends layout.pug
+
 include utils.pug
 
-head
-    title Breaddit
-body
-    table
-        thead
-            tr
-                th Username
-                th Email
-                th Password
-                th Favorite Bread
-                th Link
-        tbody
-            each user in usersRes
-                +userRow(user)
+block content
+    body
+        table
+            thead
+                tr
+                    th Username
+                    th Email
+                    th Password
+                    th Favorite Bread
+                    th Link
+            tbody
+                each user in usersRes
+                    +userRow(user)

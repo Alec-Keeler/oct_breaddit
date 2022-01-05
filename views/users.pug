@@ -1,11 +1,16 @@
+include utils.pug
+
 head
     title Breaddit
 body
-    each banana in usersRes
-        div.className.otherClass#someId
-            p= banana.username
-            p= banana.email
-            p= banana.password
-            p= banana.faveBread
-            li: a(href=`/users/${banana.id}`) /users/#{banana.id}
-        div(class= 'Someclass' id= 'some id')
+    table
+        thead
+            tr
+                th Username
+                th Email
+                th Password
+                th Favorite Bread
+                th Link
+        tbody
+            each user in usersRes
+                +userRow(user)

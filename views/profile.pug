@@ -1,7 +1,14 @@
+include utils.pug
+
 head 
     title= title
 body
-    p= user.username
-    p= user.email
-    p= user.password
-    p= user.faveBread
+    table
+        thead
+            tr
+                th Username
+                th Email
+                th Password
+                th Favorite Bread
+        tbody
+            +userRow(user)

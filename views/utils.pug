@@ -1,0 +1,8 @@
+mixin userRow(user)
+    tr
+        td= user.username
+        td= user.email
+        td= user.password
+        td= user.faveBread
+        if usersRes.length > 0
+            td: a(href=`/users/${user.id}`) Profile

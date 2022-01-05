@@ -25,3 +25,8 @@ Response Types
 Setting up Pug:
     npm install pug
     app.set('view engine', 'pug')
+
+csrfProtection!
+    npm install csurf
+    npm install cookie-parser
+

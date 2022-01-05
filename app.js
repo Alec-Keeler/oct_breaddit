@@ -1,12 +1,21 @@
 const express = require('express');
+const cookieParser = require('cookie-parser')
 // const { User } = require('./models');
 const usersRouter = require('./routes/users')
 
 const app = express();
 app.set('view engine', 'pug')
+app.use(express.urlencoded({extended: false}));
+app.use((req, res, next) => {
+    req.banana = true
+
+    next()
+})
+app.use(cookieParser())
 
 app.use('/users', usersRouter)
 app.use('/banana', usersRouter)
+
 
 app.get('/', (req, res) => {
     console.log(res)

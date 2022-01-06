@@ -10,7 +10,10 @@ app.use(express.urlencoded({extended: false}));
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'))
 
-
+app.use((err, req, res, next) => {
+    console.log('DO WE SEE THIS???')
+    next()
+})
 app.use((req, res, next) => {
     req.banana = true
 
@@ -31,14 +34,26 @@ app.get(/^\/[abc]+$/, (req, res) => {
     res.send('regex route')
 })
 
-app.all('*', (req, res) => {
-    res.send('hello from catch all')
+// app.all('*', (req, res) => {
+//     res.send('hello from catch all')
+// })
+app.use((req, res, next) => {
+    const error = new Error('Page Not Found')
+    error.status = 404
+    console.log(req.method, req.path)
+    console.log("404???")
+    next(error)
 })
 
-// /users, /users-word, /users_word, /users/
-// /users/someword, /users/:id/posts
+app.use((err, req, res, next) => {
+    // if (!err.status === 404) {
+        console.log(err)
+        console.log("hello from error handler")
+    // }
+})
 
-// const port = 8080
-// app.listen(port, () => console.log(`Listening on port ${port}...`))
+app.use((err, req, res, next) => {
+    console.log('this is the second error handler')
+})
 
 module.exports = app;

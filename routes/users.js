@@ -6,6 +6,14 @@ const csrfProtection = csurf({cookie: true})
 
 const router = express.Router()
 
+const asyncHandler = (handler) => {
+    return (req, res, next) => {
+        return handler(req, res, next).catch(next);
+    };
+};
+
+// const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
+
 router.use((req, res, next) => {
     console.log('hello from router wide middleware')
     next()
@@ -38,20 +46,24 @@ router.get('/signup', csrfProtection, (req, res) => {
     res.render('signup', {breads: ['bagel', 'bagguette', 'rye'], body: {}, errors: [], csrfToken: req.csrfToken()})
 })
 
-router.post('/signup', emailChecker, csrfProtection, async(req, res) => {
+router.post('/signup', emailChecker, csrfProtection, asyncHandler(async(req, res) => {
     console.log(req.errors)
     const { username, email, password, faveBread } = req.body
     if (req.errors.length === 0) {
-        const user = await User.create({
-            username,
-            email,
-            password,
-            faveBread
-        })
-        res.redirect('/users')
+        try {
+            const user = await User.create({
+                username,
+                email,
+                password,
+                faveBread
+            })
+            res.redirect('/users')
+        } catch (e) {
+            next(e)
+        }
     } else {
         res.render('signup', { breads: ['bagel', 'bagguette', 'rye'], body: req.body, errors: req.errors, csrfToken: req.csrfToken() })
     }
-})
+}))
 
 module.exports = router;

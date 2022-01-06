@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "per-env",
+    "start:development": "nodemon -r dotenv/config ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -23,9 +23,13 @@
     "csurf": "^1.11.0",
     "express": "^4.17.2",
     "nodemon": "^2.0.15",
+    "per-env": "^1.0.2",
     "pg": "^8.7.1",
     "pug": "^3.0.2",
     "sequelize": "^5.22.5",
     "sequelize-cli": "^5.5.1"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0"
   }
 }

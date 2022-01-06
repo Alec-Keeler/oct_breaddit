@@ -1,5 +1,5 @@
 const express = require('express');
-const { User } = require('../models');
+const { User } = require('../db/models');
 const csurf = require('csurf');
 
 const csrfProtection = csurf({cookie: true})

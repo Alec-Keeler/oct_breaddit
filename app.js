@@ -1,11 +1,16 @@
 const express = require('express');
 const cookieParser = require('cookie-parser')
+const path = require('path')
 // const { User } = require('./models');
 const usersRouter = require('./routes/users')
 
 const app = express();
 app.set('view engine', 'pug')
 app.use(express.urlencoded({extended: false}));
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'))
+
+
 app.use((req, res, next) => {
     req.banana = true
 
@@ -33,5 +38,7 @@ app.all('*', (req, res) => {
 // /users, /users-word, /users_word, /users/
 // /users/someword, /users/:id/posts
 
-const port = 8080
-app.listen(port, () => console.log(`Listening on port ${port}...`))
+// const port = 8080
+// app.listen(port, () => console.log(`Listening on port ${port}...`))
+
+module.exports = app;

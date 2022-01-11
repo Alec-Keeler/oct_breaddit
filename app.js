@@ -1,8 +1,10 @@
 const express = require('express');
 const cookieParser = require('cookie-parser')
 const path = require('path')
+const session = require('express-session');
 // const { User } = require('./models');
-const usersRouter = require('./routes/users')
+const usersRouter = require('./routes/users');
+const postsRouter = require('./routes/posts');
 
 const app = express();
 app.set('view engine', 'pug')
@@ -19,11 +21,21 @@ app.use((req, res, next) => {
 
     next()
 })
-app.use(cookieParser())
+app.use(cookieParser('secretKey'))
+app.use(session({
+    secret: 'secretKey',
+    resave: false,
+    saveUninitialized: false
+}))
+
+app.use((req, res, next) => {
+    req.session.banana = "This is a banana"
+    next()
+})
 
 app.use('/users', usersRouter)
 app.use('/banana', usersRouter)
-
+app.use('/posts', postsRouter)
 
 app.get('/', (req, res) => {
     console.log(res)

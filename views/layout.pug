@@ -9,5 +9,7 @@ body
             li: a(href="/") Home
             li: a(href="/users/signup") Signup
             li: a(href="/users/login") Login
+        if locals.authenticated
+            li: a(href="/users/logout") Logout
     block content
     footer

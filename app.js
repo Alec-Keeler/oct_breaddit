@@ -5,6 +5,7 @@ const session = require('express-session');
 // const { User } = require('./models');
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
+const { restoreUser } = require('./routes/utils');
 
 const app = express();
 app.set('view engine', 'pug')
@@ -12,10 +13,10 @@ app.use(express.urlencoded({extended: false}));
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'))
 
-app.use((err, req, res, next) => {
-    console.log('DO WE SEE THIS???')
-    next()
-})
+// app.use((err, req, res, next) => {
+//     console.log('DO WE SEE THIS???')
+//     next()
+// })
 app.use((req, res, next) => {
     req.banana = true
 
@@ -27,6 +28,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+
+app.use(restoreUser)
 
 app.use((req, res, next) => {
     req.session.banana = "This is a banana"

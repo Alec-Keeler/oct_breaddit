@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    each post in posts
+        div(id=`post-container-${post.id}`).postContainer
+            h2= post.title
+            p= post.content
+            a(href=`/posts/${post.id}`) Post Page
+            if locals.user.id === post.userId
+                form(action=`/posts/${post.id}/delete` method="post") 
+                    button(id=post.id).delete-btn Delete

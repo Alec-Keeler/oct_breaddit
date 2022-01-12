@@ -1,7 +1,7 @@
 const { User } = require('../db/models');
 
 const restoreUser = async (req, res, next) => {
-    console.log(req.session);
+    // console.log(req.session);
 
     if (req.session.user) {
         const { userId } = req.session.user;
